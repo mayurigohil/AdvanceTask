@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompititiveTask", "CompititiveTask\CompititiveTask.csproj", "{089DAD02-5BEB-456F-9CC5-5AD232BD3AC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{089DAD02-5BEB-456F-9CC5-5AD232BD3AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089DAD02-5BEB-456F-9CC5-5AD232BD3AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089DAD02-5BEB-456F-9CC5-5AD232BD3AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089DAD02-5BEB-456F-9CC5-5AD232BD3AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7742DF00-5674-497F-9301-57A5D20E5FF3}
+	EndGlobalSection
+EndGlobal
