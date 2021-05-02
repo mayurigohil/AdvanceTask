@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -12,11 +13,14 @@ namespace CompititiveTask.Pages
     class ShareSkill
     {
         IWebDriver driver;
+        int rownum = 0;
+         string filepath = "Data\\TestData.xlsx";
         //Inintialise Page Factory
-        public ShareSkill(IWebDriver driver)
+        public ShareSkill(IWebDriver driver, int rownum)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
+            this.rownum = rownum;
         }
 
         //Declare all the WebElements
@@ -105,9 +109,9 @@ namespace CompititiveTask.Pages
             
             ShareSkillButton.Click();
             WaitClass.ElementPresent(driver, "Name", "categoryId");
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            Title.SendKeys(ExcelLibHelper.ReadData(2, "Title"));
-            Description.SendKeys(ExcelLibHelper.ReadData(2, "Description"));
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            Title.SendKeys(ExcelLibHelper.ReadData(rownum, "Title"));
+            Description.SendKeys(ExcelLibHelper.ReadData(rownum, "Description"));
            
         }
 
@@ -116,8 +120,8 @@ namespace CompititiveTask.Pages
         {
             WaitClass.ElementPresent(driver, "Name", "categoryId");
             SelectElement select = new SelectElement(Category);
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var Categorydata = ExcelLibHelper.ReadData(2, "Category");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var Categorydata = ExcelLibHelper.ReadData(rownum, "Category");
             select.SelectByText(Categorydata); 
         }
 
@@ -126,37 +130,36 @@ namespace CompititiveTask.Pages
         {
             WaitClass.ElementPresent(driver, "Name", "subcategoryId");
             SelectElement select = new SelectElement(SubCategory);
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var SubCategorydata = ExcelLibHelper.ReadData(2, "SubCategory");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var SubCategorydata = ExcelLibHelper.ReadData(rownum, "SubCategory");
             select.SelectByText(SubCategorydata);
         }
 
         // Add Tags on Share skill
         public void EnterTag()
         {
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var TagData = ExcelLibHelper.ReadData(2, "Tag");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var TagData = ExcelLibHelper.ReadData(rownum, "Tag");
             Tag.SendKeys(TagData);
             Tag.SendKeys(Keys.Enter);
-            var TagData1 = ExcelLibHelper.ReadData(2, "Tag1");
+            var TagData1 = ExcelLibHelper.ReadData(rownum, "Tag1");
             Tag.SendKeys(TagData1);
             Tag.SendKeys(Keys.Enter);
         }
 
         public void ShareSkillPageRemaining()
         {
-            ServiceTypeHourly.Click();
-            LocationTypeOnline.Click();
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var Startdatedata = ExcelLibHelper.ReadData(2, "StartDate");
+            
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var Startdatedata = ExcelLibHelper.ReadData(rownum, "StartDate");
             StartDate.SendKeys(Startdatedata);
-            var Enddatedata = ExcelLibHelper.ReadData(2, "EndDate");
+            var Enddatedata = ExcelLibHelper.ReadData(rownum, "EndDate");
             EndDate.SendKeys(Enddatedata);
             Sunday.Click();
             Monday.Click();
-            var Starttimedata = ExcelLibHelper.ReadData(2, "StartTime");
+            var Starttimedata = ExcelLibHelper.ReadData(rownum, "StartTime");
             Starttime.SendKeys(Startdatedata);
-            var Endtimedata = ExcelLibHelper.ReadData(2, "EndTime");
+            var Endtimedata = ExcelLibHelper.ReadData(rownum, "EndTime");
             Endtime.SendKeys(Enddatedata);
 
         }
@@ -164,10 +167,10 @@ namespace CompititiveTask.Pages
         public void SkillExchange()
         {
             SkillTradeExchange.Click();
-            var skill = ExcelLibHelper.ReadData(2, "Skill");
+            var skill = ExcelLibHelper.ReadData(rownum, "Skill");
             Skill_Exchange.SendKeys(skill);
             Skill_Exchange.SendKeys(Keys.Enter);
-            var skill1 = ExcelLibHelper.ReadData(2, "Skill1");
+            var skill1 = ExcelLibHelper.ReadData(rownum, "Skill1");
             Skill_Exchange.SendKeys(skill1);
             Skill_Exchange.SendKeys(Keys.Enter);
         }
@@ -175,7 +178,7 @@ namespace CompititiveTask.Pages
         public void EditCreditExchange()
         {
             SkillTradeCredit.Click();
-            var Creditamount = ExcelLibHelper.ReadData(3, "Credit");
+            var Creditamount = ExcelLibHelper.ReadData(rownum, "Credit");
             Credit.SendKeys(Creditamount);
         }
 
@@ -198,20 +201,20 @@ namespace CompititiveTask.Pages
         public void EditTitle()
         {
             Title.Clear();
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            Title.SendKeys(ExcelLibHelper.ReadData(3, "Title"));
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            Title.SendKeys(ExcelLibHelper.ReadData(rownum, "Title"));
             Description.Clear();
-            Description.SendKeys(ExcelLibHelper.ReadData(3, "Description"));
+            Description.SendKeys(ExcelLibHelper.ReadData(rownum, "Description"));
         }
 
         public void EditTag()
         {
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var TagData = ExcelLibHelper.ReadData(3, "Tag");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var TagData = ExcelLibHelper.ReadData(rownum, "Tag");
             DeleteTag.Click();
             Tag.SendKeys(TagData);
             Tag.SendKeys(Keys.Enter);
-            var TagData1 = ExcelLibHelper.ReadData(3, "Tag1");
+            var TagData1 = ExcelLibHelper.ReadData(rownum, "Tag1");
             Tag.SendKeys(TagData1);
             Tag.SendKeys(Keys.Enter);
         }

@@ -32,7 +32,6 @@ namespace CompititiveTask.Utility
 
             fileName.Append(ScreenShotFileName);
             fileName.Append(DateTime.Now.ToString("_dd-mm-yyyy_mss"));
-            //fileName.Append(DateTime.Now.ToString("dd-mm-yyyym_ss"));
             fileName.Append(".Png");
             screenShot.SaveAsFile(fileName.ToString(), ScreenshotImageFormat.Png);
             return fileName.ToString();

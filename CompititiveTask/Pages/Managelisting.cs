@@ -14,13 +14,15 @@ namespace CompititiveTask.Pages
     class Managelisting
     {
         private IWebDriver driver;
+        int rownum = 0;
 
         public  string filepath = "Data\\TestData.xlsx";
 
         //Initialising driver through constructor
-        public Managelisting(IWebDriver driver)
+        public Managelisting(IWebDriver driver, int rownum)
         {
             this.driver = driver;
+            this.rownum = rownum;
         }
         //defining all the Web Element
         public IWebElement Category => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[2]"));
@@ -59,15 +61,15 @@ namespace CompititiveTask.Pages
         {   
             //Calling Excel library to get the data
                 ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
-                var ExpectedCategory = ExcelLibHelper.ReadData(2, "Category");
-                var ExpectedTitle = ExcelLibHelper.ReadData(2, "Title");
-                var ExpectedDescription = ExcelLibHelper.ReadData(2, "Description");
-                var ExpectedService = ExcelLibHelper.ReadData(2, "ServiceType");
-                var ExpectedSubCategory = ExcelLibHelper.ReadData(2, "SubCategory");
-                var ExpectedStartDate = ExcelLibHelper.ReadData(2, "StartDate");
-                var ExpectedEndDate = ExcelLibHelper.ReadData(2, "EndDate");
-                var ExpectedLocationType = ExcelLibHelper.ReadData(2, "LocationType");
-                var ExpectedSkillTrade = ExcelLibHelper.ReadData(2, "Skill");
+                var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
+                var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
+                var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
+                var ExpectedService = ExcelLibHelper.ReadData(rownum, "ServiceType");
+                var ExpectedSubCategory = ExcelLibHelper.ReadData(rownum, "SubCategory");
+                var ExpectedStartDate = ExcelLibHelper.ReadData(rownum, "StartDate");
+                var ExpectedEndDate = ExcelLibHelper.ReadData(rownum, "EndDate");
+                var ExpectedLocationType = ExcelLibHelper.ReadData(rownum, "LocationType");
+                var ExpectedSkillTrade = ExcelLibHelper.ReadData(rownum, "Skill");
 
             //Wait for the Table to get displayed
                 WaitClass.ElementPresent(driver, "XPath", "//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[7]/div/input");
@@ -75,11 +77,11 @@ namespace CompititiveTask.Pages
             //Creating variables for all the data on Manage listing page
                 var ActualCategory = Category.Text;
                 var ActualTitle = Title.Text;
-                var ActualDescription = Description.Text;
                 var ActualServiceType = ServiceType.Text;
                 View.Click();
                 WaitClass.ElementPresent(driver, "XPath", "//*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]");
                 var ActualSubCategory = SubCategory.Text;
+                var ActualDescription = DescriptionText.Text;
                 var SDate = StartDate.Text;
                 String ActualStartDate = String.Join("", SDate.Split('-').Reverse());
                 var EDate = EndDate.Text;
@@ -113,16 +115,16 @@ namespace CompititiveTask.Pages
 
         public void ManageListingHidden()
         {
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var ExpectedCategory = ExcelLibHelper.ReadData(2, "Category");
-            var ExpectedTitle = ExcelLibHelper.ReadData(2, "Title");
-            var ExpectedDescription = ExcelLibHelper.ReadData(2, "Description");
-            var ExpectedService = ExcelLibHelper.ReadData(2, "ServiceType");
-            var ExpectedSubCategory = ExcelLibHelper.ReadData(2, "SubCategory");
-            var ExpectedStartDate = ExcelLibHelper.ReadData(2, "StartDate");
-            var ExpectedEndDate = ExcelLibHelper.ReadData(2, "EndDate");
-            var ExpectedLocationType = ExcelLibHelper.ReadData(2, "LocationType");
-            var ExpectedSkillTrade = ExcelLibHelper.ReadData(2, "Skill");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
+            var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
+            var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
+            var ExpectedService = ExcelLibHelper.ReadData(rownum, "ServiceType");
+            var ExpectedSubCategory = ExcelLibHelper.ReadData(rownum, "SubCategory");
+            var ExpectedStartDate = ExcelLibHelper.ReadData(rownum, "StartDate");
+            var ExpectedEndDate = ExcelLibHelper.ReadData(rownum, "EndDate");
+            var ExpectedLocationType = ExcelLibHelper.ReadData(rownum, "LocationType");
+            var ExpectedSkillTrade = ExcelLibHelper.ReadData(rownum, "Skill");
 
             //Wait for the Table to get displayed
             WaitClass.ElementPresent(driver, "XPath", "//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[7]/div/input");
@@ -130,10 +132,10 @@ namespace CompititiveTask.Pages
             //Creating variables for all the data on Manage listing page
             var ActualCategory = Category.Text;
             var ActualTitle = Title.Text;
-            var ActualDescription = Description.Text;
             var ActualServiceType = ServiceType.Text;
             View.Click();
             WaitClass.ElementPresent(driver, "XPath", "//*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]");
+            var ActualDescription = DescriptionText.Text;
             var ActualSubCategory = SubCategory.Text;
             var SDate = StartDate.Text;
             String ActualStartDate = String.Join("", SDate.Split('-').Reverse());
@@ -173,15 +175,15 @@ namespace CompititiveTask.Pages
 
         public void ValidateEditManageListing()
         {
-            ExcelLibHelper.PopulateInDataCollection(@"C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\Data\TestData.xlsx", "ShareSkill");
-            var ExpectedCategory = ExcelLibHelper.ReadData(3, "Category");
-            var ExpectedTitle = ExcelLibHelper.ReadData(3, "Title");
-            var ExpectedDescription = ExcelLibHelper.ReadData(3, "Description");
-            var ExpectedService = ExcelLibHelper.ReadData(3, "ServiceType");
-            var ExpectedSubCategory = ExcelLibHelper.ReadData(3, "SubCategory");
-            var ExpectedStartDate = ExcelLibHelper.ReadData(3, "StartDate");
-            var ExpectedEndDate = ExcelLibHelper.ReadData(3, "EndDate");
-            var ExpectedLocationType = ExcelLibHelper.ReadData(3, "LocationType");
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+            var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
+            var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
+            var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
+            var ExpectedService = ExcelLibHelper.ReadData(rownum, "ServiceType");
+            var ExpectedSubCategory = ExcelLibHelper.ReadData(rownum, "SubCategory");
+            var ExpectedStartDate = ExcelLibHelper.ReadData(rownum, "StartDate");
+            var ExpectedEndDate = ExcelLibHelper.ReadData(rownum, "EndDate");
+            var ExpectedLocationType = ExcelLibHelper.ReadData(rownum, "LocationType");
             
             var ExpectedCredit= ExcelLibHelper.ReadData(3, "Credit");
 
@@ -191,7 +193,6 @@ namespace CompititiveTask.Pages
             //Creating variables for all the data on Manage listing page
             var ActualCategory = Category.Text;
             var ActualTitle = Title.Text;
-            //var ActualDescription = Description.Text;
             var ActualServiceType = ServiceType.Text;
             View.Click();
             WaitClass.ElementPresent(driver, "XPath", "//*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]");

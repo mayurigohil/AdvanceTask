@@ -167,6 +167,7 @@ C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\bin\Debug\ne
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\bin\Debug\netcoreapp3.1\runtimes\win-x86\nativeassets\netcoreapp2.2\aspnetcorev2_inprocess.dll
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.csprojAssemblyReference.cache
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.AssemblyInfoInputs.cache
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.AssemblyInfo.cs
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.csproj.CoreCompileInputs.cache
@@ -174,4 +175,6 @@ C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\ne
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.dll
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.pdb
 C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.genruntimeconfig.cache
-C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.csprojAssemblyReference.cache
+C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\bin\Debug\netcoreapp3.1\Data\TestData.xlsx
+C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.Resource.Resource1.resources
+C:\Users\Dell\Documents\VB Feb 2021\CompititiveTask\CompititiveTask\obj\Debug\netcoreapp3.1\CompititiveTask.csproj.GenerateResource.cache

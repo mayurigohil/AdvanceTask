@@ -16,7 +16,8 @@ namespace CompititiveTask
     {
         public static ExtentTest _test;
         public static ExtentReports _extent;
-        public IWebDriver _driver;
+        public static string BasePath = Resource.Resource1.BasePath;
+
         [OneTimeSetUp]
         protected void Setup()
         {
@@ -32,6 +33,7 @@ namespace CompititiveTask
             _extent.AddSystemInfo("Environment", "QA");
             _extent.AddSystemInfo("UserName", "Mayuri Gohil");
         }
+
         [OneTimeTearDown]
         protected void TearDown()
         {
@@ -44,90 +46,92 @@ namespace CompititiveTask
                 _test.Log(Status.Fail, stackTrace + errorMessage);
                 _test.Log(Status.Fail, "Snapshot below: " + CommonDriver.SaveScreenshot(driver, "Share Skill Failed"));
             }
-           
-            _extent.Flush();
-           
-        }
+         _extent.Flush();
+         }
+
         [SetUp]
         public void SetUpBrowser()
         {
             driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://localhost:5000");
+            driver.Navigate().GoToUrl(BasePath);
             driver.Manage().Window.Maximize();
-           
         }
 
         [TearDown]
-
         public void CloseBrowser()
         {
             driver.Quit();
-
         }
 
-        [Test]
-        [Category("SkillShare")]
-        public void AddSkillShareSkillExchangeActive()
+        [TestCase(2)]
+        [TestCase(5)]
+        [Category("SkillShare Add")]
+        public void AddSkillShareSkillExchangeActive(int rownum)
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            _test = _extent.CreateTest("Add Shareskill with Service Enabled");
             _test.Log(Status.Info, "Browser Initialisation");
             Login Obj1 = new Login();
             Obj1.LoginPage(driver);
-            ShareSkill Obj2 = new ShareSkill(driver);
+            ShareSkill Obj2 = new ShareSkill(driver,rownum);
             _test.Log(Status.Info, "ShareSkill Page is Opened");
             Obj2.ShareSkillPage();
             Obj2.SelectCategory();
             Obj2.SelectSubCategory();
             Obj2.EnterTag();
+            Obj2.LocationTypeOnsite();
+            Obj2.ServiceTypeOne_off();
             Obj2.ShareSkillPageRemaining();
             Obj2.SkillExchange();
             Obj2.ActiveShareSkill();
             Obj2.SaveShareSkill();
             _test.Log(Status.Info, "ShareSkill is Saved");
             Thread.Sleep(3000);
-            Managelisting Obj3 = new Managelisting(driver);
+            Managelisting Obj3 = new Managelisting(driver,rownum);
             Obj3.ManageListingsActive();
             _test.Log(Status.Pass, "Assert Pass as condition is True and Manage listing is Active");
 
         }
 
-        [Test]
-        [Category("SkillShare")]
-        public void AddSkillShareCreditHidden()
+        [TestCase(3)]
+        [TestCase(6)]
+        [Category("SkillShare Add")]
+        public void AddSkillShareCreditHidden(int rownum)
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            _test = _extent.CreateTest("Share Skill with Service Disabled");
             _test.Log(Status.Info, "Browser Initialisation");
             Login Obj1 = new Login();
             Obj1.LoginPage(driver);
-            ShareSkill Obj2 = new ShareSkill(driver);
+            ShareSkill Obj2 = new ShareSkill(driver,rownum);
             _test.Log(Status.Info, "ShareSkill Page is Opened");
             Obj2.ShareSkillPage();
             Obj2.SelectCategory();
             Obj2.SelectSubCategory();
             Obj2.EnterTag();
+            Obj2.LocationTypeOnLine();
+            Obj2.ServicetypeHourly();
             Obj2.ShareSkillPageRemaining();
             Obj2.SkillExchange();
             Obj2.HiddenshareSkill();
             Obj2.SaveShareSkill();
             _test.Log(Status.Info, "ShareSkill is Saved");
             Thread.Sleep(3000);
-            Managelisting Obj3 = new Managelisting(driver);
+            Managelisting Obj3 = new Managelisting(driver,rownum);
             Obj3.ManageListingHidden();
             _test.Log(Status.Pass, "Assert Pass as condition is True and Manage listing is Hidden");
         }
 
-        [Test]
-        [Category("SkillShare")]
-        public void EditSkillShareCreditHidden()
+        [TestCase(4)]
+        [Category("SkillShare Edit")]
+        public void EditSkillShareCreditHidden(int rownum)
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            _test = _extent.CreateTest("Edit Share Skill with Skill Trade as Skill Exchange and change it to Credit");
             _test.Log(Status.Info, "Browser Initialisation");
             Login Obj1 = new Login();
             Obj1.LoginPage(driver);
-            Managelisting Obj3 = new Managelisting(driver);
+            Managelisting Obj3 = new Managelisting(driver,rownum);
             Obj3.NavigateManageListing();
             Obj3.EditManageListing();
-            ShareSkill Obj2 = new ShareSkill(driver);
+            ShareSkill Obj2 = new ShareSkill(driver,rownum);
             _test.Log(Status.Info, "ShareSkill Page is Opened");
             Obj2.EditTitle();
             Obj2.SelectCategory();
