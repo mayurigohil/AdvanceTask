@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Documents\\VB Feb 2021\\CompititiveTask\\CompititiveTask\\CompititiveTask.csproj": {}
+    "C:\\Users\\Dell\\Documents\\VB Feb 2021\\AdvanceTask_Nunit\\CompititiveTask\\CompititiveTask.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Documents\\VB Feb 2021\\CompititiveTask\\CompititiveTask\\CompititiveTask.csproj": {
+    "C:\\Users\\Dell\\Documents\\VB Feb 2021\\AdvanceTask_Nunit\\CompititiveTask\\CompititiveTask.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\CompititiveTask\\CompititiveTask\\CompititiveTask.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\AdvanceTask_Nunit\\CompititiveTask\\CompititiveTask.csproj",
         "projectName": "CompititiveTask",
-        "projectPath": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\CompititiveTask\\CompititiveTask\\CompititiveTask.csproj",
+        "projectPath": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\AdvanceTask_Nunit\\CompititiveTask\\CompititiveTask.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\CompititiveTask\\CompititiveTask\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Documents\\VB Feb 2021\\AdvanceTask_Nunit\\CompititiveTask\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

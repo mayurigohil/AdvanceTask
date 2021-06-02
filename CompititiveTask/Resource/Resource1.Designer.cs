@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CompititiveTask.Resource {
+namespace AdvanceTask.Resource {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CompititiveTask.Resource {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CompititiveTask.Resource.Resource1", typeof(Resource1).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdvanceTask.Resource.Resource1", typeof(Resource1).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace CompititiveTask.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://localhost:5000/.
+        ///   Looks up a localized string similar to http://localhost:5000/Home.
         /// </summary>
         internal static string BasePath {
             get {

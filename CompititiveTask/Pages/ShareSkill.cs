@@ -1,4 +1,4 @@
-﻿using CompititiveTask.Utility;
+﻿using AdvanceTask.Utility;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
@@ -8,19 +8,21 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-namespace CompititiveTask.Pages
+namespace AdvanceTask.Pages
 {
     class ShareSkill
     {
         IWebDriver driver;
         int rownum = 0;
-         string filepath = "Data\\TestData.xlsx";
+        string filepath = "Data\\TestData.xlsx";
+
         //Inintialise Page Factory
         public ShareSkill(IWebDriver driver, int rownum)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
             this.rownum = rownum;
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
         }
 
         //Declare all the WebElements
@@ -109,7 +111,6 @@ namespace CompititiveTask.Pages
             
             ShareSkillButton.Click();
             WaitClass.ElementPresent(driver, "Name", "categoryId");
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             Title.SendKeys(ExcelLibHelper.ReadData(rownum, "Title"));
             Description.SendKeys(ExcelLibHelper.ReadData(rownum, "Description"));
            
@@ -120,7 +121,6 @@ namespace CompititiveTask.Pages
         {
             WaitClass.ElementPresent(driver, "Name", "categoryId");
             SelectElement select = new SelectElement(Category);
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var Categorydata = ExcelLibHelper.ReadData(rownum, "Category");
             select.SelectByText(Categorydata); 
         }
@@ -130,7 +130,6 @@ namespace CompititiveTask.Pages
         {
             WaitClass.ElementPresent(driver, "Name", "subcategoryId");
             SelectElement select = new SelectElement(SubCategory);
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var SubCategorydata = ExcelLibHelper.ReadData(rownum, "SubCategory");
             select.SelectByText(SubCategorydata);
         }
@@ -138,8 +137,7 @@ namespace CompititiveTask.Pages
         // Add Tags on Share skill
         public void EnterTag()
         {
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
-            var TagData = ExcelLibHelper.ReadData(rownum, "Tag");
+             var TagData = ExcelLibHelper.ReadData(rownum, "Tag");
             Tag.SendKeys(TagData);
             Tag.SendKeys(Keys.Enter);
             var TagData1 = ExcelLibHelper.ReadData(rownum, "Tag1");
@@ -150,7 +148,6 @@ namespace CompititiveTask.Pages
         public void ShareSkillPageRemaining()
         {
             
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var Startdatedata = ExcelLibHelper.ReadData(rownum, "StartDate");
             StartDate.SendKeys(Startdatedata);
             var Enddatedata = ExcelLibHelper.ReadData(rownum, "EndDate");
@@ -201,7 +198,6 @@ namespace CompititiveTask.Pages
         public void EditTitle()
         {
             Title.Clear();
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             Title.SendKeys(ExcelLibHelper.ReadData(rownum, "Title"));
             Description.Clear();
             Description.SendKeys(ExcelLibHelper.ReadData(rownum, "Description"));
@@ -209,7 +205,6 @@ namespace CompititiveTask.Pages
 
         public void EditTag()
         {
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var TagData = ExcelLibHelper.ReadData(rownum, "Tag");
             DeleteTag.Click();
             Tag.SendKeys(TagData);

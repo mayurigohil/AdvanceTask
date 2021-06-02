@@ -1,5 +1,5 @@
 ﻿using AventStack.ExtentReports;
-using CompititiveTask.Utility;
+using AdvanceTask.Utility;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -9,30 +9,32 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CompititiveTask.Pages
+namespace AdvanceTask.Pages
 {
     class Managelisting
     {
-        private IWebDriver driver;
-        int rownum = 0;
 
+        private IWebDriver driver;
+        public  int rownum = 0;
         public  string filepath = "Data\\TestData.xlsx";
+      
 
         //Initialising driver through constructor
         public Managelisting(IWebDriver driver, int rownum)
         {
             this.driver = driver;
             this.rownum = rownum;
+            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
+        
         }
+
         //defining all the Web Element
         public IWebElement Category => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[2]"));
         public IWebElement Title => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[3]"));
         public IWebElement Description => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[4]"));
         public IWebElement ServiceType => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[5]"));
         public IList<IWebElement> Active => driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[7]/div/input"));
-
         public IWebElement View => driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[8]/div/button[1]"));
-
         public IWebElement SubCategory => driver.FindElement(By.XPath("//*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div[2]"));
         public IWebElement StartDate => driver.FindElement(By.XPath(" //*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[3]/div/div[1]/div/div[2]"));
         public IWebElement EndDate => driver.FindElement(By.XPath("//*[@id='service-detail-section']/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div/div[2]"));
@@ -55,12 +57,10 @@ namespace CompititiveTask.Pages
             EditManageListingButton.Click();
             WaitClass.ElementPresent(driver, "Name", "title");
         }
-        
           
         public  void ManageListingsActive()
         {   
             //Calling Excel library to get the data
-                ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
                 var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
                 var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
                 var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
@@ -88,6 +88,7 @@ namespace CompititiveTask.Pages
                 String ActualEndDate = String.Join("", EDate.Split('-').Reverse());
                 var ActualLocationType = LocationType.Text;
                 var ActualSkillTrade = SkillTrade.Text;
+
             // Back to the Manage listing Page
                 driver.Navigate().Back();
 
@@ -115,7 +116,6 @@ namespace CompititiveTask.Pages
 
         public void ManageListingHidden()
         {
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
             var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
             var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
@@ -142,10 +142,6 @@ namespace CompititiveTask.Pages
             var EDate = EndDate.Text;
             String ActualEndDate = String.Join("", EDate.Split('-').Reverse());
             var ActualLocationType = LocationType.Text;
-          //  var ActualSkillTrade = SkillTrade.Text;
-
-            //SearchText.SendKeys(ExcelLibHelper.ReadData(2, "Title"));
-            //SearchText.SendKeys(Keys.Enter);
 
             // Back to the Manage listing Page
             driver.Navigate().Back();
@@ -168,14 +164,11 @@ namespace CompititiveTask.Pages
                 Assert.That(ActualStartDate == ExpectedStartDate);
                 Assert.That(ActualEndDate == ExpectedEndDate);
                 Assert.That(ActualLocationType == ExpectedLocationType);
-             //   Assert.That(ActualSkillTrade == ExpectedSkillTrade);
-
             });
         }
 
         public void ValidateEditManageListing()
         {
-            ExcelLibHelper.PopulateInDataCollection((Path.Combine(AppDomain.CurrentDomain.BaseDirectory + filepath)), "ShareSkill");
             var ExpectedCategory = ExcelLibHelper.ReadData(rownum, "Category");
             var ExpectedTitle = ExcelLibHelper.ReadData(rownum, "Title");
             var ExpectedDescription = ExcelLibHelper.ReadData(rownum, "Description");
@@ -231,9 +224,7 @@ namespace CompititiveTask.Pages
                 Assert.That(ActualStartDate == ExpectedStartDate);
                 Assert.That(ActualEndDate == ExpectedEndDate);
                 Assert.That(ActualLocationType == ExpectedLocationType);
-               // Assert.That(ActualSkillTrade == ExpectedSkillTrade);
                 Assert.That(CreditAmount == "Charge is :$" + ExpectedCredit + " per hour");
-
             });
         }
 

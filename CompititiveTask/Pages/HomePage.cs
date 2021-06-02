@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace CompititiveTask.Pages
+namespace AdvanceTask.Pages
 {
     class HomePage
     {

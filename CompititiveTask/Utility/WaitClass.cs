@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace CompititiveTask.Utility
+namespace AdvanceTask.Utility
 {
     class WaitClass
     {

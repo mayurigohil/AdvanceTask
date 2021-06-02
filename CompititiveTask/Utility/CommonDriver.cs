@@ -6,7 +6,7 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
 using System.IO;
 
-namespace CompititiveTask.Utility
+namespace AdvanceTask.Utility
 {
     class CommonDriver
     {
